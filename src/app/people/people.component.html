@@ -1,9 +1,9 @@
-<div class="well">
-  <h1 class="text-alert text-center text-primary">PEOPLE</h1>
-</div>
-
 <div class="container">
-  <div class="panel panel-default" *ngFor="let person of (this.peopleService.people$ | async)">
+  <div class="well">
+    <h1 class="text-alert text-center text-primary">PEOPLE</h1>
+  </div>
+
+  <div class="panel panel-default" *ngFor="let person of (this.peopleService.people$ | async); let position = index">
     <div class="panel-heading">
       <h3 class="panel-title">{{person.name}}</h3>
     </div>
@@ -12,8 +12,8 @@
       <p><span class="text-primary">City:</span> {{person.city}}</p>
     </div>
     <div class="panel-footer">
-      <a class="btn btn-success">UP</a>
-      <a class="btn btn-danger">DOWN</a>
+      <a class="btn btn-success" (click)="this.changePersonOrder(person, position, position - 1)">UP</a>
+      <a class="btn btn-danger" (click)="this.changePersonOrder(person, position, position + 1)">DOWN</a>
     </div>
   </div>
 </div>
